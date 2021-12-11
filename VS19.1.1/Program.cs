@@ -36,7 +36,7 @@ namespace VS19._1._1
                 new Computer (){Id = 8, CodNeme ="MSI Trident X", TypeProcessor="Intel Core i7 9700K", SpeedProcessor=3.8, Ram=16, VolumeDisk = 2500, MemoryVideoCard=4, Cost=178000, CU="руб.", Quantity=8},
             };
             //все компьютеры с указанным процессором. Название процессора запросить у пользователя;
-            Console.WriteLine("=========== все компьютеры с указанным процессором ===========");
+            Console.WriteLine("=========== все компьютеры с указанным процессором ===========\n");
             Console.WriteLine("Тип процессора:");
             string typeProcessor = Console.ReadLine();
             bool rez = listComputers.Any(c => c.TypeProcessor == typeProcessor);
@@ -58,7 +58,7 @@ namespace VS19._1._1
             }
             Console.ReadKey();
             //все компьютеры с объемом ОЗУ не ниже, чем указано. Объем ОЗУ запросить у пользователя
-            Console.WriteLine("\n=========== все компьютеры с объемом ОЗУ не ниже, чем указано ===========");
+            Console.WriteLine("\n=========== все компьютеры с объемом ОЗУ не ниже, чем указано ===========\n");
             Console.WriteLine("Объем ОЗУ Гб:");
             int ram = Convert.ToInt32(Console.ReadLine());
             bool rez1 = listComputers.Any(c => c.Ram >= ram);
@@ -79,7 +79,7 @@ namespace VS19._1._1
             }
             Console.ReadKey();
             //вывести весь список, отсортированный по увеличению стоимости;
-            Console.WriteLine("\n=========== вывести весь список, отсортированный по увеличению стоимости ===========");
+            Console.WriteLine("\n=========== вывести весь список, отсортированный по увеличению стоимости ===========\n");
             List<Computer> computers2 = (from c in listComputers
                                          orderby c.Cost ascending
                                          select c)
@@ -90,7 +90,7 @@ namespace VS19._1._1
             }
             Console.ReadKey();
             //вывести весь список, сгруппированный по типу процессора
-            Console.WriteLine("\n=========== вывести весь список, сгруппированный по типу процессора ===========");
+            Console.WriteLine("\n=========== вывести весь список, сгруппированный по типу процессора ===========\n");
             //var compGr = listComputers.GroupBy(c => c.TypeProcessor)
             //    .Select(p => new { TypeProcessor = p.Key, Count = p.Count() });
             var compGr1 = from comp in listComputers
@@ -107,7 +107,7 @@ namespace VS19._1._1
             }            
             Console.ReadKey();
             //найти самый дорогой и самый бюджетный компьютер
-            Console.WriteLine("\n=========== найти самый дорогой и самый бюджетный компьютер ===========");
+            Console.WriteLine("\n=========== найти самый дорогой и самый бюджетный компьютер ===========\n");
             List<Computer> computers4 = (from c in listComputers
                                          orderby c.Cost ascending
                                          select c)
@@ -120,10 +120,20 @@ namespace VS19._1._1
             Console.WriteLine($"Максимальная стоимость: {compMax.Id}. Марка: {compMax.CodNeme}.   Цена: {compMax.Cost} {compMax.CU}");
             Console.ReadKey();
             //есть ли хотя бы один компьютер в количестве не менее 30 штук
-            Console.WriteLine("\n=========== есть ли хотя бы один компьютер в количестве не менее 30 штук ===========");
+            Console.WriteLine("\n=========== есть ли хотя бы один компьютер в количестве не менее 30 штук ===========\n");
             List<Computer> computers5 = listComputers
                 .Where(c => c.Quantity >= 30)
                 .ToList();
+            bool rez2 = listComputers.Any(c => c.Quantity >= 30);
+            if (rez2)
+            {
+                Console.WriteLine("Есть компьютер в количестве не менее 30шт.");
+            }
+            else
+            {
+                Console.WriteLine("Нет компьютера в количестве не менее 30шт.");
+            }
+                
             foreach (Computer c in computers5)
             {
                 Console.WriteLine($"{c.Id}. Марка: {c.CodNeme}.    Количество: {c.Quantity}.");
